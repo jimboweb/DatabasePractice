@@ -1,0 +1,36 @@
+load data infile '/var/lib/mysql-files/lcod.csv' 
+into table orbit_data
+fields terminated by ','
+lines terminated by '\r'
+ignore 1 lines
+(id,
+spk_id,
+@vnear_earth_object,
+@vpotentially_hazardous,
+@vorbit_id,
+@vepoch,
+@veccentricity,
+@vsemi_major_axis,
+@vperihelion_distance,
+@vinclination,
+@vmean_anomaly,
+@vapihelion_distance,
+@vmean_motion,
+@vperiod,
+@vearth_min_orbit_distance,
+@vsigma_q)
+set 
+near_earth_object = nullif(@vnear_earth_object, 'Null'),
+potentially_hazardous = nullif(@vpotentially_hazardous , 'Null'),
+orbit_id  = nullif(@vorbit_id , 'Null'),
+epoch  = nullif(@vepoch , 'Null'),
+eccentricity  = nullif(@veccentricity , 'Null'),
+semi_major_axis  = nullif(@vsemi_major_axis , 'Null'),
+perihelion_distance  = nullif(@vperihelion_distance , 'Null'),
+inclination  = nullif(@vinclination , 'Null'),
+mean_anomaly  = nullif(@vmean_anomaly , 'Null'),
+apihelion_distance  = nullif(@vapihelion_distance , 'Null'),
+mean_motion  = nullif(@vmean_motion , 'Null'),
+period  = nullif(@vperiod , 'Null'),
+earth_min_orbit_distance  = nullif(@vearth_min_orbit_distance , 'Null'),
+sigma_q  = nullif(@vsigma_q , 'Null');
